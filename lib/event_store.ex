@@ -112,23 +112,23 @@ defmodule EventStore do
 
   Start multiple instances of the event store, each with a unique name:
 
-      {:ok, _pid} = EventStore.start_link(name: :eventstore1)
-      {:ok, _pid} = EventStore.start_link(name: :eventstore2)
-      {:ok, _pid} = EventStore.start_link(name: :eventstore3)
+      {:ok, _pid} = MyApp.EventStore.start_link(name: :eventstore1)
+      {:ok, _pid} = MyApp.EventStore.start_link(name: :eventstore2)
+      {:ok, _pid} = MyApp.EventStore.start_link(name: :eventstore3)
 
   Use a dynamic event store by providing its name as an option to each function:
 
-      :ok = EventStore.append_to_stream(stream_uuid, expected_version, events, name: :eventstore1)
+      :ok = MyApp.EventStore.append_to_stream(stream_uuid, expected_version, events, name: :eventstore1)
 
-      {:ok, events} = EventStore.read_stream_forward(stream_uuid, 0, 1_000, name: :eventstore1)
+      {:ok, events} = MyApp.EventStore.read_stream_forward(stream_uuid, 0, 1_000, name: :eventstore1)
 
   ## Dynamic schemas
 
   This feature also allows you to start each event store instance using a
   different schema:
 
-      {:ok, _pid} = EventStore.start_link(name: :tenant1, schema: "tenant1")
-      {:ok, _pid} = EventStore.start_link(name: :tenant2, schema: "tenant2")
+      {:ok, _pid} = MyApp.EventStore.start_link(name: :tenant1, schema: "tenant1")
+      {:ok, _pid} = MyApp.EventStore.start_link(name: :tenant2, schema: "tenant2")
 
   Or start supervised:
 
